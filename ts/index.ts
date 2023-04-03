@@ -1,5 +1,23 @@
 import { getRandom, incrementCounter, indexKeyList } from "./global";
 
+const getPathInGoogleApi = (path: string) =>
+    "https://storage.googleapis.com/stress-explosion-images/" + path + ".png";
+
+const changeBodyBgImageSrc = (path: string) => {
+    const url = getPathInGoogleApi(path);
+    const body = document.body;
+
+    body.style.backgroundImage = `url("${url}")`;
+};
+
+const getParams = (paramName: string) => {
+    let url = new URL(window.location.href);
+
+    const params = url.searchParams;
+
+    return params.get(paramName);
+};
+
 const playVideoOnClick = (index: number) => {
     const explosionVideo = document.getElementById(
         `v-${index}`
@@ -59,6 +77,16 @@ const setPositionOfVideos = () => {
 };
 
 const main = () => {
+    // dummy id param
+    // "016582cf0d94ec309eb1bfae7446aaa4be62b6fa0fca4ec47cf572b0646cc321/04-03-14-15"
+    const id = getParams("id");
+
+    if (!id) {
+        alert("illegal ID");
+        return;
+    }
+
+    changeBodyBgImageSrc(id);
     setPositionOfVideos();
     indexKeyList.map((index) => playVideoOnClick(index));
 };
