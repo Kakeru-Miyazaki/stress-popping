@@ -1,4 +1,4 @@
-import { container } from "webpack";
+const getRandom = (size = 5) => (Math.random() * 2 - 1) * size;
 
 const indexKeyList = [...Array(7)].map((_, index) => index);
 
@@ -37,15 +37,15 @@ const setPositionOfVideos = () => {
     const yMargin = 16;
 
     const positionList: Pos[] = [
-        { x: 25 + xMargin, y: 16.5 + yMargin },
-        { x: 75 - xMargin, y: 16.5 + yMargin },
+        { x: getRandom() + 25 + xMargin, y: getRandom() + 16.5 + yMargin },
+        { x: getRandom() + 75 - xMargin, y: getRandom() + 16.5 + yMargin },
 
-        { x: 16.5, y: 50 },
-        { x: 50, y: 50 },
-        { x: 83.5, y: 50 },
+        { x: getRandom() + 22.5, y: getRandom() + 45 },
+        { x: getRandom() + 50, y: getRandom() + 45 },
+        { x: getRandom() + 77.5, y: getRandom() + 45 },
 
-        { x: 25 + xMargin, y: 83.5 - yMargin },
-        { x: 75 - xMargin, y: 83.5 - yMargin },
+        { x: getRandom() + 25 + xMargin, y: getRandom() + 79.5 - yMargin },
+        { x: getRandom() + 75 - xMargin, y: getRandom() + 79.5 - yMargin },
     ];
 
     indexKeyList.map((index) => {
