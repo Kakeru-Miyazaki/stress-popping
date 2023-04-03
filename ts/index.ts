@@ -1,3 +1,5 @@
+import { container } from "webpack";
+
 const indexKeyList = [...Array(7)].map((_, index) => index);
 
 const playVideoOnClick = (index: number) => {
@@ -6,13 +8,14 @@ const playVideoOnClick = (index: number) => {
     ) as HTMLVideoElement | null;
 
     const container = document.getElementById(`c-${index}`);
+    const wrapper = document.getElementById(`w-${index}`);
 
-    if (!explosionVideo || !container) {
+    if (!explosionVideo || !container || !wrapper) {
         console.error(`cannot get elements with index ${index}`);
         return;
     }
 
-    container.addEventListener("click", () => {
+    wrapper.addEventListener("click", () => {
         const videoLength = 4000;
 
         container.style.opacity = "1";
@@ -46,7 +49,7 @@ const setPositionOfVideos = () => {
     ];
 
     indexKeyList.map((index) => {
-        const element = document.getElementById(`c-${index}`);
+        const element = document.getElementById(`w-${index}`);
 
         if (!element) return;
 
