@@ -15,3 +15,7 @@ export const incrementCounter = async () => {
 };
 
 export const getRandom = (size = 4) => (Math.random() * 2 - 1) * size;
+
+export const redirectTo404 = () => {
+    window.location.href = "./html/404.html";
+};
