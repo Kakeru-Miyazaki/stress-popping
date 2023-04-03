@@ -18,6 +18,8 @@ const playVideoOnClick = (index: number) => {
 
         container.style.opacity = "1";
         explosionVideo.play();
+        window.navigator.vibrate([200, 100, 200]);
+
         setTimeout(async () => {
             // hide explosion video
             await incrementCounter();
