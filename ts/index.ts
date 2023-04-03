@@ -1,13 +1,38 @@
-import { getRandom, incrementCounter, indexKeyList } from "./global";
+import {
+    getRandom,
+    incrementCounter,
+    indexKeyList,
+    redirectTo404,
+} from "./global";
 
 const getPathInGoogleApi = (path: string) =>
     "https://storage.googleapis.com/stress-explosion-images/" + path + ".png";
+
+const checkImageExists = (
+    imageUrl: string,
+    callback: (arg0: boolean) => void
+) => {
+    const img = new Image();
+    img.onload = function () {
+        callback(true);
+    };
+    img.onerror = function () {
+        callback(false);
+    };
+    img.src = imageUrl;
+};
 
 const changeBodyBgImageSrc = (path: string) => {
     const url = getPathInGoogleApi(path);
     const body = document.body;
 
-    body.style.backgroundImage = `url("${url}")`;
+    checkImageExists(url, (exist) => {
+        if (exist) {
+            body.style.backgroundImage = `url("${url}")`;
+        } else {
+            redirectTo404();
+        }
+    });
 };
 
 const getParams = (paramName: string) => {
@@ -82,7 +107,8 @@ const main = () => {
     const id = getParams("id");
 
     if (!id) {
-        alert("illegal ID");
+        // alert("illegal ID");
+        redirectTo404();
         return;
     }
 
