@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, exports) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.redirectTo404 = exports.getRandom = exports.incrementCounter = exports.indexKeyList = void 0;\nexports.indexKeyList = [...Array(7)].map((_, index) => index);\nlet counter = 0;\nconst explosionNum = 7;\nconst incrementCounter = () => {\n    ++counter;\n    if (counter >= explosionNum) {\n        alert(\"done\");\n    }\n};\nexports.incrementCounter = incrementCounter;\nconst getRandom = (size = 4) => (Math.random() * 2 - 1) * size;\nexports.getRandom = getRandom;\nconst redirectTo404 = () => {\n    window.location.href = \"./html/404.html\";\n};\nexports.redirectTo404 = redirectTo404;\n\n\n//# sourceURL=webpack://stress-coping/./ts/global.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.redirectTo404 = exports.getRandom = exports.incrementCounter = exports.indexKeyList = void 0;\nexports.indexKeyList = [...Array(7)].map((_, index) => index);\nlet counter = 0;\nconst explosionNum = 7;\nconst incrementCounter = () => {\n    navigator.locks.request(\"counter\", async (_lock) => {\n        ++counter;\n        if (counter == explosionNum) {\n            alert(\"done\");\n        }\n    });\n};\nexports.incrementCounter = incrementCounter;\nconst getRandom = (size = 4) => (Math.random() * 2 - 1) * size;\nexports.getRandom = getRandom;\nconst redirectTo404 = () => {\n    window.location.href = \"./html/404.html\";\n};\nexports.redirectTo404 = redirectTo404;\n\n\n//# sourceURL=webpack://stress-coping/./ts/global.ts?");
 
 /***/ }),
 

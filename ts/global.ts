@@ -5,10 +5,12 @@ let counter = 0;
 const explosionNum = 7;
 
 export const incrementCounter = () => {
-    ++counter;
-    if (counter >= explosionNum) {
-        alert("done");
-    }
+    navigator.locks.request("counter", async (_lock) => {
+        ++counter;
+        if (counter == explosionNum) {
+            alert("done");
+        }
+    });
 };
 
 export const getRandom = (size = 4) => (Math.random() * 2 - 1) * size;
