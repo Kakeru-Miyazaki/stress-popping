@@ -16,7 +16,7 @@
   \*******************/
 /***/ ((__unused_webpack_module, exports) => {
 
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.notifyExplosionCompletion = void 0;\nconst baseUrl = \"http://localhost:3000\";\nconst NotifyExplosionCompletionParams = {\n    id: \"id\",\n};\nconst notifyExplosionCompletion = async (params) => {\n    const url = new URL(baseUrl);\n    url.searchParams.set(\"id\", params.id);\n    await fetch(url, {\n        mode: \"no-cors\",\n        headers: {\n            \"Access-Control-Allow-Origin\": \"*\",\n        },\n    })\n        .then(() => {\n        console.log(\"send!!\");\n    })\n        .catch(() => {\n        console.error(\"server does not work\");\n    });\n};\nexports.notifyExplosionCompletion = notifyExplosionCompletion;\n\n\n//# sourceURL=webpack://stress-coping/./ts/api.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.notifyExplosionCompletion = void 0;\nconst baseUrl = \"http://localhost:3000\";\nconst NotifyExplosionCompletionParams = {\n    id: \"id\",\n};\nconst notifyExplosionCompletion = async (params) => {\n    const url = new URL(baseUrl + \"/notify\");\n    url.searchParams.set(\"id\", params.id);\n    await fetch(url, {\n        mode: \"no-cors\",\n        headers: {\n            \"Access-Control-Allow-Origin\": \"*\",\n        },\n    })\n        .then(() => {\n        console.log(\"send!!\");\n    })\n        .catch(() => {\n        console.error(\"server does not work\");\n    });\n};\nexports.notifyExplosionCompletion = notifyExplosionCompletion;\n\n\n//# sourceURL=webpack://stress-coping/./ts/api.ts?");
 
 /***/ }),
 

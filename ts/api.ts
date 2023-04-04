@@ -10,7 +10,7 @@ export type NotifyExplosionCompletionParams =
 export const notifyExplosionCompletion = async (params: {
     [key in NotifyExplosionCompletionParams]: string;
 }): Promise<void | Response> => {
-    const url = new URL(baseUrl);
+    const url = new URL(baseUrl + "/notify");
     url.searchParams.set("id", params.id);
 
     await fetch(url, {
