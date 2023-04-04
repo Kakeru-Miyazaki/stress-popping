@@ -1,6 +1,7 @@
 import {
+    counter,
     getRandom,
-    incrementCounter,
+    imageId,
     indexKeyList,
     redirectTo404,
 } from "./global";
@@ -13,10 +14,10 @@ const checkImageExists = (
     callback: (arg0: boolean) => void
 ) => {
     const img = new Image();
-    img.onload = function () {
+    img.onload = () => {
         callback(true);
     };
-    img.onerror = function () {
+    img.onerror = () => {
         callback(false);
     };
     img.src = imageUrl;
@@ -35,11 +36,9 @@ const changeBodyBgImageSrc = (path: string) => {
     });
 };
 
-const getParams = (paramName: string) => {
-    let url = new URL(window.location.href);
-
+export const getParams = (paramName: string) => {
+    const url = new URL(window.location.href);
     const params = url.searchParams;
-
     return params.get(paramName);
 };
 
@@ -64,7 +63,7 @@ const playVideoOnClick = (index: number) => {
 
         setTimeout(async () => {
             // hide explosion video
-            incrementCounter();
+            counter.incrementCounter();
             explosionVideo.style.display = "none";
         }, videoLength);
     });
@@ -111,7 +110,8 @@ const main = () => {
         return;
     }
 
-    changeBodyBgImageSrc(id);
+    imageId.set(id);
+    changeBodyBgImageSrc(imageId.value);
     setPositionOfVideos();
     indexKeyList.map((index) => playVideoOnClick(index));
 };
