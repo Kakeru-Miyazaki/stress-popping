@@ -64,7 +64,7 @@ const playVideoOnClick = (index: number) => {
 
         setTimeout(async () => {
             // hide explosion video
-            await incrementCounter();
+            incrementCounter();
             explosionVideo.style.display = "none";
         }, videoLength);
     });
@@ -107,7 +107,6 @@ const main = () => {
     const id = getParams("id");
 
     if (!id) {
-        // alert("illegal ID");
         redirectTo404();
         return;
     }

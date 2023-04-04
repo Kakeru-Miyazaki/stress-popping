@@ -4,13 +4,10 @@ let counter = 0;
 
 const explosionNum = 7;
 
-export const incrementCounter = async () => {
-    try {
-        ++counter;
-    } finally {
-        if (counter >= explosionNum) {
-            alert("done");
-        }
+export const incrementCounter = () => {
+    ++counter;
+    if (counter >= explosionNum) {
+        alert("done");
     }
 };
 
