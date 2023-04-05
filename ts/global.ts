@@ -17,6 +17,10 @@ export const counter = {
     },
 };
 
+export const completeTask = () => {
+    window.location.href = "./html/finish.html";
+};
+
 export const imageId = {
     value: "",
     set: (id: string) => {
