@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:3000";
+// const baseUrl = "http://localhost:3000";
+const baseUrl =
+    "https://script.google.com/macros/s/AKfycby8dZA-lOWCxKbtJIkp20Tkks-25brIWxpi0e4CweWt_UqwlKNHHR66pxGkUFlImTweXw/exec";
 
 const NotifyExplosionCompletionParams = {
     id: "id",
@@ -10,7 +12,7 @@ export type NotifyExplosionCompletionParams =
 export const notifyExplosionCompletion = async (params: {
     [key in NotifyExplosionCompletionParams]: string;
 }): Promise<void | Response> => {
-    const url = new URL(baseUrl + "/notify");
+    const url = new URL(baseUrl);
     url.searchParams.set("id", params.id);
 
     await fetch(url, {
