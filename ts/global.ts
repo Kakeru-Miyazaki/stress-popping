@@ -1,16 +1,27 @@
-export const indexKeyList = [...Array(7)].map((_, index) => index);
+import { notifyExplosionCompletion } from "./api";
 
-let counter = 0;
+export const indexKeyList = [...Array(7)].map((_, index) => index);
 
 const explosionNum = 7;
 
-export const incrementCounter = () => {
-    navigator.locks.request("counter", async (_lock) => {
-        ++counter;
-        if (counter == explosionNum) {
-            alert("done");
-        }
-    });
+export const counter = {
+    value: 0,
+    incrementCounter: () => {
+        navigator.locks.request("counter", async (_lock) => {
+            ++counter.value;
+            if (counter.value == explosionNum) {
+                console.log("all movie was clicked");
+                notifyExplosionCompletion({ id: imageId.value });
+            }
+        });
+    },
+};
+
+export const imageId = {
+    value: "",
+    set: (id: string) => {
+        imageId.value = id;
+    },
 };
 
 export const getRandom = (size = 4) => (Math.random() * 2 - 1) * size;
