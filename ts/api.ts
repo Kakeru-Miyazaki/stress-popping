@@ -1,3 +1,5 @@
+import { completeTask } from "./global";
+
 // const baseUrl = "http://localhost:3000";
 const baseUrl =
     "https://script.google.com/macros/s/AKfycby8dZA-lOWCxKbtJIkp20Tkks-25brIWxpi0e4CweWt_UqwlKNHHR66pxGkUFlImTweXw/exec";
@@ -23,6 +25,7 @@ export const notifyExplosionCompletion = async (params: {
     })
         .then(() => {
             console.log("send!!");
+            completeTask();
         })
         .catch(() => {
             console.error("server does not work");
