@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="utf-8" />
+        <title>medicine</title>
+    </head>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap');
+    </style>
+
+    <body>
+    </body>
+    <script>
+        const getData = async () => {
+            try {
+                const params = new URL(window.location.href).searchParams;
+                const paramsList = [
+                    "pName",
+                    "when",
+                    "medicineName",
+                    "medicineNum"
+                ]
+                const baseUrl = "https://script.google.com/macros/s/AKfycbyG75CoGk2E8_O8l1-drZGBWITi1kxvG24wbUK34pke6DE5i98twwUivQziRHeNJaRP/exec"
+                const url = baseUrl + "?" + paramsList.map((param) => `${param}=${params.get(param)}`).join("&");
+                const response = await fetch(url);
+
+                console.log('show response.');
+                console.log(response);
+
+                if (!response.ok) {
+                    console.log('show status.');
+                    console.log(response.status);
+                }
+
+                console.log('show response data.');
+                console.log(await response.json());
+            } catch (error) {
+                // ネットワークエラーのとき
+                console.log('show error');
+                console.log(error);
+                throw error;
+            }
+        };
+
+        window.onload = () => {
+            getData();
+        };
+    </script>
+
+</html>
